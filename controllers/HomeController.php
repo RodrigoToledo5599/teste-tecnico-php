@@ -26,6 +26,7 @@ class HomeController{
 
     public function filtrarPorNome($nome){
         $prod = $this->_prod_repo->procurarPorNome($nome);
+        // var_dump($prod);
         echo render('home', ['produtos' => $prod]);
     }
 

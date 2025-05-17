@@ -17,7 +17,7 @@ class ProdutoRepository
         // return $rows;
     }
 
-    public function procurarPorCodigo(string $codigo): ?Produto
+    public function procurarPorCodigo(string $codigo)
     {
         $stmt = $this->db->prepare("SELECT * FROM produtos WHERE codigo = ?");
         $stmt->execute([$codigo]);
@@ -25,23 +25,23 @@ class ProdutoRepository
         return $row ? $this->mapRowToEntity($row) : null;
     }
 
-    public function procurarPorNome(string $nome): ?Produto
+    public function procurarPorNome(string $nome)
     {
-        $stmt = $this->db->prepare("SELECT * FROM produtos WHERE nome = ?");
+        $stmt = $this->db->prepare("SELECT * FROM produtos WHERE nome LIKE  '%?%' ");
         $stmt->execute([$nome]);
         $row = $stmt->fetch();
         return $row ? $this->mapRowToEntity($row) : null;
     }
 
-    public function procurarPorAtivos(): ?Produto
+    public function procurarPorAtivos()
     {
-        $stmt = $this->db->prepare("SELECT * FROM produtos WHERE status_do_produto = 5");
+        $stmt = $this->db->prepare("SELECT * FROM produtos WHERE status_do_produto = 1");
         $stmt->execute();
         $row = $stmt->fetch();
         return $row ? $this->mapRowToEntity($row) : null;
     }
 
-    public function procurarPorInativos(): ?Produto
+    public function procurarPorInativos()
     {
         $stmt = $this->db->prepare("SELECT * FROM produtos WHERE status_do_produto= 0 ");
         $stmt->execute();
@@ -88,11 +88,11 @@ class ProdutoRepository
         return $ok;
     }
 
-    public function delete(int $id): bool
+    public function delete(string $code): bool
     {
         return $this->db
-            ->prepare("DELETE FROM produtos WHERE id=?")
-            ->execute([$id]);
+            ->prepare("DELETE FROM produtos WHERE codigo=?")
+            ->execute([$code    ]);
     }
 
     /* ---------- private helpers ---------- */

@@ -27,7 +27,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php if (count($produtos) === null): ?>
+            <?php if (!isset($produtos[0])) : ?>
                 <tr><td colspan="7" class="text-center">Nenhum produto encontrado.</td></tr>
             <?php else: ?>
                 <?php foreach ($produtos as $produto): ?>
@@ -44,9 +44,28 @@
             <?php endif; ?>
         </tbody>
     </table>
-    <a href="logout.php" class="btn btn-primary">Ativos</a>
-    <a href="logout.php" class="btn btn-secondary">Inativos</a>
-    <a href="logout.php" class="btn btn-primary">A</a>
+    <a href="/home-ativos" class="btn btn-primary">Ativos</a>
+    <a href="/home-inativos" class="btn btn-secondary">Inativos</a>
+    <div class="container mt-5">
+        <form action="/home-search-by-code" method="get" class="row g-3 mt-3">
+            <div class="col-auto">
+                <input type="text" name="codigo" class="form-control" placeholder="Digite o código" required>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+            </div>
+        </form>
+        <form action="/home-search-by-name" method="get" class="row g-3 mt-3">
+            <div class="col-auto">
+                <input type="text" name="name" class="form-control" placeholder="Digite o nome" required>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+            </div>
+        </form>
+    </div>
+
+    
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

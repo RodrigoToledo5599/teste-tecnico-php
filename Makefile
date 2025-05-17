@@ -1,4 +1,3 @@
-
 up-all:
 	docker-compose up app -d
 	docker-compose up webserver -d
@@ -16,7 +15,8 @@ app-run:
 
 
 do-it-all:
-	@make app-up
+	@make create-network
+	@make up-all
 	@make db-up
 	@sleep 3
 	@make db-up
