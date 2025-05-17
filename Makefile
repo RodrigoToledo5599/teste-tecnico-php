@@ -1,7 +1,6 @@
 
 
 app-up:
-	docker-compose up db -d
 	docker-compose up app -d
 	docker-compose up webserver -d
 
@@ -16,8 +15,26 @@ app-run:
 	docker-compose exec app php -S localhost:8000 router.php --host 0.0.0.0 --port 8000
 
 
+do-it-all:
+	@make app-up
+	@make db-up
+	@sleep 3
+	@make db-up
 
-create-db:
 
-	docker-compose exec db sh -c "mysql -u root -p'password' -e 'CREATE DATABASE IF NOT EXISTS teste_tecnico_db';
-	
+
+
+# mysql zone =========================================================================================================================================================================================
+
+
+show-db:
+	docker-compose exec db sh -c "mysql -u root -p'password' -e 'SHOW DATABASES;'";
+
+show-tables:
+	docker-compose exec db sh -c "mysql -u root -p'password' -e 'USE teste_tecnico_db; SHOW TABLES;' ";
+
+drop-dbs:
+	docker-compose exec db sh -c "mysql -u root -p'password' -e 'DROP DATABASE teste_tecnico_db'";
+
+query-produtos:
+	docker-compose exec db sh -c "mysql -u root -p'password' -e 'USE teste_tecnico_db; SELECT * FROM produtos'";

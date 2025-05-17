@@ -27,11 +27,12 @@ services:
     container_name: teste-tecnico-db
     image: mysql:8.0
     environment:
-      MYSQL_DATABASE: teste-tecnico-db
+      MYSQL_DATABASE: teste_tecnico_db
       MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: password
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./mysql:/docker-entrypoint-initdb.d 
     ports:
       - "3306:3306"
     networks:
@@ -45,6 +46,7 @@ networks:
 
 volumes:
   mysql_data:
+  # database.sql:
 
 
       

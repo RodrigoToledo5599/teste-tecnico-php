@@ -1,7 +1,7 @@
 <?php
 
 
-define("HOSTNAME", "localhost");
+define("HOSTNAME", "db");
 define("USERNAME", "root");
 define("PASSWORD", "password");
 define("DATABASE", "teste_tecnico_db");
