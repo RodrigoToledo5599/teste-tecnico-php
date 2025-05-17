@@ -26,10 +26,22 @@ switch ($request) {
         $controller->index();
         break;
 
-    case '/fetchprod':
+    case '/home':
         require_once BASE_PATH . '/controllers/HomeController.php';
         $controller = new HomeController($prodRepo);
-        $controller->fetchProdutos();
+        $controller->index();
+        break;
+    
+    case '/home-search-by-code':
+        require_once BASE_PATH . '/controllers/HomeController.php';
+        $controller = new HomeController($prodRepo);
+        $controller->filtrarPorCodigo();
+        break;
+
+    case '/home-search-by-name':
+        require_once BASE_PATH . '/controllers/HomeController.php';
+        $controller = new HomeController($prodRepo);
+        $controller->filtrarPorNome();
         break;
 
     default:

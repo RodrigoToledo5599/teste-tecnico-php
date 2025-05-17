@@ -10,13 +10,14 @@ class ProdutoRepository
         $this->db = $db;
     }
 
-    public function all(): array
+    public function procurarTodos(): array
     {
         $rows = $this->db->query("SELECT * FROM produtos")->fetchAll();
         return array_map([$this, 'mapRowToEntity'], $rows);
+        // return $rows;
     }
 
-    public function findByCodigo(string $codigo): ?Produto
+    public function procurarPorCodigo(string $codigo): ?Produto
     {
         $stmt = $this->db->prepare("SELECT * FROM produtos WHERE codigo = ?");
         $stmt->execute([$codigo]);
@@ -24,17 +25,57 @@ class ProdutoRepository
         return $row ? $this->mapRowToEntity($row) : null;
     }
 
-    public function save(Produto $p): bool
+    public function procurarPorNome(string $nome): ?Produto
+    {
+        $stmt = $this->db->prepare("SELECT * FROM produtos WHERE nome = ?");
+        $stmt->execute([$nome]);
+        $row = $stmt->fetch();
+        return $row ? $this->mapRowToEntity($row) : null;
+    }
+
+    public function procurarPorAtivos(): ?Produto
+    {
+        $stmt = $this->db->prepare("SELECT * FROM produtos WHERE status_do_produto = 5");
+        $stmt->execute();
+        $row = $stmt->fetch();
+        return $row ? $this->mapRowToEntity($row) : null;
+    }
+
+    public function procurarPorInativos(): ?Produto
+    {
+        $stmt = $this->db->prepare("SELECT * FROM produtos WHERE status_do_produto= 0 ");
+        $stmt->execute();
+        $row = $stmt->fetch();
+        return $row ? $this->mapRowToEntity($row) : null;
+    }
+
+
+    public function adicionarProduto(Produto $produto){
+        $sql = "INSERT INTO produtos (codigo, nome, descricao, valor, quantidade, status_do_produto)
+                VALUES (:codigo, :nome, :descricao, :valor, :quantidade, :status_do_produto)";
+
+        $stmt = $this->pdo->prepare($sql);
+        return $stmt->execute([
+            ':codigo' => $produto->codigo,
+            ':nome' => $produto->nome,
+            ':descricao' => $produto->descricao,
+            ':valor' => $produto->valor,
+            ':quantidade' => $produto->quantidade,
+            ':status' => $produto->status
+        ]);
+    }
+
+    public function atualizarProduto(Produto $p): bool
     {
         if ($p->id) {
             $sql = "UPDATE produtos
-                    SET codigo=?, nome=?, descricao=?, valor=?, quantidade=?, status=?
+                    SET codigo=?, nome=?, descricao=?, valor=?, quantidade=?, status_do_produto=?
                     WHERE id=?";
             $data = [$p->codigo, $p->nome, $p->descricao, $p->valor,
                      $p->quantidade, $p->status, $p->id];
         } else {
             $sql = "INSERT INTO produtos
-                      (codigo, nome, descricao, valor, quantidade, status)
+                      (codigo, nome, descricao, valor, quantidade, status_do_produto)
                     VALUES (?,?,?,?,?,?)";
             $data = [$p->codigo, $p->nome, $p->descricao, $p->valor,
                      $p->quantidade, $p->status];
@@ -64,7 +105,7 @@ class ProdutoRepository
             $row['descricao'],
             (float) $row['valor'],
             (int)   $row['quantidade'],
-            $row['status'],
+            $row['status_do_produto'],
             (int)   $row['id']
         );
     }

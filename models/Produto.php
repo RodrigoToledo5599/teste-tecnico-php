@@ -8,7 +8,7 @@ class Produto
     public ?string $descricao;
     public float   $valor;
     public int     $quantidade;
-    public bool  $status;     
+    public bool  $status_do_produto;     
 
     public function __construct(
         string  $codigo,
@@ -16,7 +16,7 @@ class Produto
         ?string $descricao,
         float   $valor,
         int     $quantidade,
-        bool    $status = true,
+        bool    $status_do_produto = true,
         ?int    $id     = null
     ) {
         $this->codigo     = $codigo;
@@ -24,7 +24,7 @@ class Produto
         $this->descricao  = $descricao;
         $this->valor      = $valor;
         $this->quantidade = $quantidade;
-        $this->status     = $status;
+        $this->status_do_produto     = $status_do_produto;
         $this->id         = $id;
     }
 }

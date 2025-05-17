@@ -1,6 +1,9 @@
 CREATE DATABASE IF NOT EXISTS teste_tecnico_db;
 
+ALTER DATABASE teste_tecnico_db CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
 USE teste_tecnico_db;
+
 
 CREATE TABLE usuarios (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -18,11 +21,11 @@ CREATE TABLE produtos (
   descricao TEXT,
   valor DECIMAL(10,2) DEFAULT 0.00,
   quantidade INT DEFAULT 0,
-  status BOOLEAN NOT NULL DEFAULT TRUE
+  status_do_produto BOOLEAN NOT NULL DEFAULT TRUE
 );
 
 
-INSERT INTO produtos (codigo, nome, descricao, valor, quantidade, status) VALUES 
+INSERT INTO produtos (codigo, nome, descricao, valor, quantidade, status_do_produto) VALUES 
 ('P001', 'Mouse Gamer RGB', 'Mouse com iluminação RGB e sensor óptico de alta precisão.', 129.90, 25, TRUE),
 ('P002', 'Teclado Mecânico ABNT2', 'Teclado mecânico com switches azuis e layout brasileiro.', 249.99, 15, TRUE),
 ('P003', 'Suporte para Notebook', 'Suporte ergonômico para notebooks de até 17 polegadas.', 89.50, 40, FALSE),

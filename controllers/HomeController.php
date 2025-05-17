@@ -1,5 +1,7 @@
 <?php
 
+require_once '../public/render.php';
+
 
 class HomeController{
 
@@ -10,17 +12,31 @@ class HomeController{
     }
 
     public function index() {
-        require_once __DIR__.'./../views/login.php';
-    
+        $prod = $this->_prod_repo->procurarTodos();
+        // return $prod;
+        echo render('home', ['produtos' => $prod]);
     }
 
 
-
-    public function fetchProdutos(){
-        // $prods = json_encode($this->_prod_repo->all());
-        $prods = $this->_prod_repo->all();
-        // var_dump($prods);
-        return $prods;
+    public function filtrarPorCodigo($codigo){
+        $prod = $this->_prod_repo->procurarPorCodigo();
+        echo render('home', ['produtos' => $prod]);
 
     }
+
+    public function filtrarPorNome($nome){
+        $prod = $this->_prod_repo->procurarPorNome($nome);
+        echo render('home', ['produtos' => $prod]);
+    }
+
+    public function filtrarPorAtivos(){
+        $prod = $this->_prod_repo->procurarPorAtivos();
+        echo render('home', ['produtos' => $prod]);
+    }
+
+    public function filtrarPorInativos(){
+        $prod = $this->_prod_repo->procurarPorInativos();
+        echo render('home', ['produtos' => $prod]);
+    }
+
 }
