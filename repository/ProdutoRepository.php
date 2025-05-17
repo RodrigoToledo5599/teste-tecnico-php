@@ -10,7 +10,6 @@ class ProdutoRepository
         $this->db = $db;
     }
 
-    /** @return Produto[] */
     public function all(): array
     {
         $rows = $this->db->query("SELECT * FROM produtos")->fetchAll();

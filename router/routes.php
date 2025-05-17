@@ -1,5 +1,0 @@
-<?php
-
-$routes =[
-    '/' => 'HomeController@index',
-];

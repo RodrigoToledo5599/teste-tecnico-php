@@ -7,7 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    // Dummy check — replace with real user validation logic
     if ($email === 'admin@example.com' && $password === 'secret') {
         $_SESSION['user'] = $email;
         header('Location: dashboard.php');
