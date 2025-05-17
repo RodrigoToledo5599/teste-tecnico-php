@@ -64,7 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 >
             </div>
 
-            <button type="submit" class="btn btn-primary w-100">Entrar</button>
+            <button type="submit" class="btn btn-primary w-100">Entrar</button><br><br>
+            <a type="submit" href="/usuario-cadastro" class="btn btn-primary w-100">Criar conta</a>
+
         </form>
     </div>
 

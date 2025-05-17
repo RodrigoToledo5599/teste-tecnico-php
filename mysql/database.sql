@@ -13,6 +13,11 @@ CREATE TABLE usuarios (
 );
 
 
+INSERT INTO usuarios (username, email, password) VALUES 
+('Rodrigo Toledo', 'rodrigo@gmail.com', '$2a$12$v9yzjG3qFiGIpsmDNkJ9nOoFX6j00oD3aaFRWJzbuHKJC06m9YSLW'), -- 123
+('Antonio Silva' , 'antonio@gmail.com', '$2a$12$eXbtJOLSDZKM.YHr14fdj.rtzto2K12bWhIkXuTHAxph0OZx5gYC2'), -- 1234
+
+
 
 CREATE TABLE produtos (
   id INT AUTO_INCREMENT PRIMARY KEY,

@@ -15,7 +15,7 @@ app-run:
 
 
 do-it-all:
-	@make create-network
+	# @make create-network
 	@make up-all
 	@make db-up
 	@sleep 3
@@ -38,3 +38,6 @@ drop-dbs:
 
 query-produtos:
 	docker-compose exec db sh -c "mysql -u root -p'password' -e 'USE teste_tecnico_db; SELECT * FROM produtos'";
+
+query-users:
+	docker-compose exec db sh -c "mysql -u root -p'password' -e 'USE teste_tecnico_db; SELECT * FROM usuarios'";

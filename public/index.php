@@ -6,6 +6,7 @@ define('BASE_PATH', dirname(__DIR__));
 
 require_once BASE_PATH . '/repository/ProdutoRepository.php';
 require_once BASE_PATH . '/repository/UserRepository.php';
+// require_once BASE_PATH . '/controllers/';
 require_once BASE_PATH . '/models/Database.php';
 
 $database = new Database();
@@ -21,14 +22,14 @@ if (strpos($request, '?') !== false) {
 
 switch ($request) {
     case '/':
-        require_once BASE_PATH . '/controllers/HomeController.php';
-        $controller = new HomeController($prodRepo);
-        $controller->index();
+        require_once BASE_PATH . '/controllers/UserController.php';
+        $controller = new UserController($userRepo);
+        $controller->login();
         break;
 
     case '/produto-cadastro':
         require_once BASE_PATH . '/controllers/ProdutoController.php';
-        $controller = new UserController($prodRepo);
+        $controller = new UserController($userRepo);
         $controller->index();
         break;  
     
@@ -56,13 +57,13 @@ switch ($request) {
     
     case '/usuario-cadastro':
         require_once BASE_PATH . '/controllers/UserController.php';
-        $controller = new UserController($prodRepo);
+        $controller = new UserController($userRepo);
         $controller->index();
         break;
     
     case '/usuario-cadastrar':
         require_once BASE_PATH . '/controllers/UserController.php';
-        $controller = new UserController($prodRepo);
+        $controller = new UserController($userRepo);
         $nome = $_POST['nome'] ?? null;
         $password = $_POST['password'] ?? null;
         $email = $_POST['email'] ?? null;
