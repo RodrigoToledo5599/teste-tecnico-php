@@ -2,16 +2,26 @@ services:
   app:
     container_name: teste-tecnico
     build: .
-    ports:
-      - "8000:80"
     volumes:
-      - ./public:/var/www/html
-      - ./src:/var/www/src
-      - ./php.ini:/usr/local/etc/php/php.ini
+      - .:/var/www/html
     depends_on:
       - db
     networks:
       - teste-tecnico
+  
+  webserver:
+    image: nginx:latest
+    container_name: nginx_server
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - teste-tecnico
+
 
   db:
     container_name: teste-tecnico-db
