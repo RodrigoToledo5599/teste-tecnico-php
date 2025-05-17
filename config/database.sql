@@ -17,3 +17,10 @@ CREATE TABLE produtos (
   quantidade INT DEFAULT 0,
   status ENUM('ativo', 'inativo') NOT NULL DEFAULT 'ativo'
 );
+
+
+
+INSERT INTO produtos (codigo, nome, descricao, valor, quantidade, status) VALUES 
+('P001', 'Mouse Gamer RGB', 'Mouse com iluminação RGB e sensor óptico de alta precisão.', 129.90, 25, 'ativo'),
+('P002', 'Teclado Mecânico ABNT2', 'Teclado mecânico com switches azuis e layout brasileiro.', 249.99, 15, 'ativo'),
+('P003', 'Suporte para Notebook', 'Suporte ergonômico para notebooks de até 17 polegadas.', 89.50, 40, 'inativo');

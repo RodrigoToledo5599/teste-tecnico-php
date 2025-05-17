@@ -1,5 +1,11 @@
 <?php
 
+
+define("HOSTNAME", "localhost");
+define("USERNAME", "root");
+define("PASSWORD", "password");
+define("DATABASE", "teste_tecnico_db");
+
 class Database 
 {
     private $db_host = DB_HOST;

@@ -3,7 +3,6 @@
     <div class="header__main">
       <h1>
         Products
-
         <i class="fa-solid fa-shop"></i>
       </h1>
 
