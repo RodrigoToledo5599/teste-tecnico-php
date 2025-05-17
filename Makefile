@@ -1,8 +1,8 @@
 
-
-app-up:
+up-all:
 	docker-compose up app -d
 	docker-compose up webserver -d
+	@make db-up
 
 create-network:
 	docker network create teste-tecnico

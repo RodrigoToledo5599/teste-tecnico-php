@@ -1,17 +1,11 @@
 <?php
 
-
-define("HOSTNAME", "db");
-define("USERNAME", "root");
-define("PASSWORD", "password");
-define("DATABASE", "teste_tecnico_db");
-
 class Database 
 {
-    private $db_host = DB_HOST;
-    private $db_user = DB_USER;
-    private $db_pass = DB_PASS;
-    private $db_name = DB_NAME;
+    private $db_host = "db";
+    private $db_user = "root";
+    private $db_pass = "password";
+    private $db_name = "teste_tecnico_db";
 
     private static ?PDO $connection = null;
 
@@ -32,7 +26,7 @@ class Database
             } catch (PDOException $e) {
                 error_log("Database connection error: " . $e->getMessage());
                 http_response_code(500);
-                exit("Internal Server Error");
+                exit("<h1>Não foi possível se conectar ao banco de dados</h1>");
             }
         }
 

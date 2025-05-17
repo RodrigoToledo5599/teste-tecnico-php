@@ -8,7 +8,7 @@ class Produto
     public ?string $descricao;
     public float   $valor;
     public int     $quantidade;
-    public string  $status;     // 'ativo' | 'inativo'
+    public bool  $status;     
 
     public function __construct(
         string  $codigo,
@@ -16,7 +16,7 @@ class Produto
         ?string $descricao,
         float   $valor,
         int     $quantidade,
-        string  $status = 'ativo',
+        bool    $status = true,
         ?int    $id     = null
     ) {
         $this->codigo     = $codigo;

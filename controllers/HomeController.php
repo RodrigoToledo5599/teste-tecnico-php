@@ -10,18 +10,17 @@ class HomeController{
     }
 
     public function index() {
-        require_once __DIR__.'./../public/views/login.php';
+        require_once __DIR__.'./../views/login.php';
     
     }
 
-    public function indexos() {
-        require_once __DIR__.'./../public/views/create-user.php';
-        
-    }
 
 
     public function fetchProdutos(){
-        
+        // $prods = json_encode($this->_prod_repo->all());
+        $prods = $this->_prod_repo->all();
+        // var_dump($prods);
+        return $prods;
 
     }
 }
